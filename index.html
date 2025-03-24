@@ -10,22 +10,22 @@
     <header class="hero-section">
         <h1>Welcome to Sonaya</h1>
         <p>Your Personal AI Muse</p>
-        <a href="register.html" class="cta-button">Create Your Sonaya</a>
     </header>
-    <section class="features">
-        <h2>Features</h2>
-        <p>Choose your AI partner and enjoy personalized interactions.</p>
+    <section class="register-form">
+        <form id="chat-form">
+            <label for="username">Enter your name:</label>
+            <input type="text" id="username" name="username" required>
+            <button type="submit">Start Chatting</button>
+        </form>
     </section>
-    <section class="pricing">
-        <h2>Pricing</h2>
-        <p>Free, Premium (9,90 €), VIP (29,90 €)</p>
-    </section>
-    <section class="about">
-        <h2>About Us</h2>
-        <p>Learn more about Sonaya and our mission to provide personalized AI experiences.</p>
+    <section class="chat-ui" id="chat-ui" style="display:none;">
+        <div class="messages" id="messages"></div>
+        <input type="text" id="message-input" placeholder="Type your message...">
+        <button id="send-button">Send</button>
     </section>
     <footer>
         <p>&copy; 2025 Sonaya. All rights reserved.</p>
     </footer>
+    <script src="script.js"></script>
 </body>
 </html>

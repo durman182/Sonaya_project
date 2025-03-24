@@ -25,7 +25,7 @@ body {
     background-color: #e73370;
 }
 
-.features, .pricing, .about, .register-form {
+.features, .pricing, .about, .register-form, .chat-ui {
     padding: 20px;
     text-align: center;
 }
@@ -38,4 +38,16 @@ footer {
     position: fixed;
     width: 100%;
     bottom: 0;
+}
+
+.chat-ui {
+    display: none;
+}
+
+.messages {
+    border: 1px solid #ccc;
+    padding: 10px;
+    height: 300px;
+    overflow-y: scroll;
+    margin-bottom: 10px;
 }
