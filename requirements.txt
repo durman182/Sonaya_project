@@ -3,3 +3,4 @@ unicorn
 openai
 uvicorn
 gunicorn
+flask
