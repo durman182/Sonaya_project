@@ -1,13 +1,22 @@
-from fastapi import FastAPI
-from openai import OpenAI
+from flask import Flask, request, jsonify
+import openai
+import os
 
-app = FastAPI()
+app = Flask(__name__)
 
-@app.get("/")
-def read_root():
-    return{"message": "Sonaya API beží"}
+# Načítanie API kľúča zo súboru .env
+openai.api_key = os.getenv('OPENAI_API_KEY')
 
-@app.post("/chat")
-async def chat(input_text: dict):
-    response = "Tu je odpoveď AI" # Tu pridaj OpenAI API request
-    return {"responze": responze}
+@app.route('/chat', methods=['POST'])
+def chat():
+    user_message = request.json.get('message')
+    response = openai.Completion.create(
+        engine="text-davinci-003",  # Alebo iný model
+        prompt=user_message,
+        max_tokens=150
+    )
+    return jsonify({'response': response.choices[0].text.strip()})
+
+if __name__ == "__main__":
+    app.run(debug=True)
+
