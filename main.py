@@ -8,6 +8,6 @@ def read_root():
     return{"message": "Sonaya API beží"}
 
 @app.post("/chat")
-async def chat(input_text: dic):
+async def chat(input_text: dict):
     response = "Tu je odpoveď AI" # Tu pridaj OpenAI API request
     return {"responze": responze}
