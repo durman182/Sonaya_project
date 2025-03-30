@@ -1,4 +1,5 @@
 fastapi
 unicorn
 openai
+uvicorn
 gunicorn
