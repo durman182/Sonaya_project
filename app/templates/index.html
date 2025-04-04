@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!--
+    Title: Simple Chatbot - Chat
+    Description: Main chat page for the Simple Chatbot.
+    Author: Your Name
+    Date: YYYY-MM-DD
+  -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Simple Chatbot - Chat</title>
+  <link rel="stylesheet" href="/static/css/style.css">
+  <!-- Google Fonts for better typography -->
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+  <!-- Header Section with Navigation Tabs -->
+  <header>
+    <div class="container">
+      <h1 class="logo">Simple Chatbot</h1>
+      <nav>
+        <ul class="nav-links">
+          <!-- Current page (chat), so we can mark it as active -->
+          <li><a href="/" class="active">Chat</a></li>
+          <!-- Open About in a new tab -->
+          <li><a href="/about" target="_blank">About</a></li>
+          <!-- Open Contact in a new tab -->
+          <li><a href="/contact" target="_blank">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Main Chat Section -->
+  <main>
+    <section class="chat-section">
+      <div class="chat-container">
+        <div id="chat-box" class="chat-box">
+          <!-- Chat messages will appear here -->
+        </div>
+        <form id="chat-form" class="chat-form">
+          <input type="text" id="user-input" placeholder="Type your message..." required />
+          <button type="submit">Send</button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <!-- JavaScript for Chat Functionality -->
+  <script>
+    const form = document.getElementById("chat-form");
+    const chatBox = document.getElementById("chat-box");
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const userInput = document.getElementById("user-input").value;
+      
+      // Append user message to chat
+      chatBox.innerHTML += `<div class="message user">${userInput}</div>`;
+      document.getElementById("user-input").value = "";
+
+      const formData = new FormData();
+      formData.append("user_prompt", userInput);
+
+      // Send POST request to backend API
+      const response = await fetch("/api/chat", {
+        method: "POST",
+        body: formData
+      });
+      const data = await response.json();
+      
+      // Append API response to chat
+      chatBox.innerHTML += `<div class="message bot">${data.response || data.error}</div>`;
+      // Scroll to the bottom of chat box
+      chatBox.scrollTop = chatBox.scrollHeight;
+    });
+  </script>
+</body>
+</html>
