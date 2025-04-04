@@ -1,6 +1,0 @@
-fastapi
-unicorn
-openai
-uvicorn
-gunicorn
-flask
