@@ -2,6 +2,10 @@ fastapi
 uvicorn
 python-dotenv
 requests
-openai
 jinja2
 python-multipart
+
+flask
+openai
+flask-cors
+gunicorn
